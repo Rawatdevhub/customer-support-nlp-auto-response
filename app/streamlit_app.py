@@ -12,9 +12,7 @@ st.set_page_config(page_title="Customer Support Auto-Response", page_icon="💬"
 st.title("💬 Customer Support Query Understanding")
 st.caption("Stage 1: extract the core query. Stage 2: classify the intent and retrieve a suggested response.")
 
-if not MODEL_PATH.exists():
-    st.warning("The baseline model has not been trained yet. Run the training command from the README.")
-    st.stop()
+if not MODEL_PATH.exists(): train(ROOT / "data" / "raw" / "Bitext_Customer_Support_Dataset.csv")
 
 raw = st.text_area("Paste a full support ticket", height=220, placeholder="Hello support,\n\nI was charged twice for my order...\n\nRegards, Customer")
 if st.button("Analyze ticket", type="primary") and raw.strip():
